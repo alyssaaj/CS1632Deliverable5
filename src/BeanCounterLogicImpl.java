@@ -108,9 +108,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			total = total + slots[s] * s;
 		}
 		int currBeanCount = getInSlotBeanCount(slotCount);
+		if (currBeanCount == 0) {
+			return 0;
+		}
+		return (double) total / (double) currBeanCount;
 
-		double average = (double) total / (double) currBeanCount;
-		return average;
 	}
 
 	/**
