@@ -200,7 +200,14 @@ public class BeanCounterLogicTest {
 		}			
 	
 		logic.lowerHalf();
-		int remainingBeans = (beanCount + 1) / 2;
+
+		int remaingBeans;
+		if (beanCount % 2 == 0) {
+			remainingBeans = beanCount / 2;
+		} else {
+			remainingBeans = (beanCount + 1) / 2;
+		}
+		
 		Assert.assertEquals(failString, remainingBeans, ((BeanCounterLogicImpl)logic).getInSlotBeanCount());
 		
 		for (int i = 0; i < slotCount; i++) {
@@ -239,8 +246,15 @@ public class BeanCounterLogicTest {
 		}
 
 		logic.upperHalf();
-		int remainingBeans = (beanCount + 1) / 2;
-		Assert.assertEquals(failString, remainingBeans, ((BeanCounterLogicImpl)logic).getInSlotBeanCount());
+
+		int remaingBeans;
+		if (beanCount % 2 == 0) {
+			remainingBeans = beanCount / 2;
+		} else {
+			remainingBeans = (beanCount + 1) / 2;
+		}
+		
+		Assert.assertEquals(failString, remainingBeans, ((BeanCounterLogicImpl)logic).getInSlotBeanCount(slotCount));
 		
 		j = 0;
 		for (int i = 0; i < slotCount; i++) {

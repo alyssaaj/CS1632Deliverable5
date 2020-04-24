@@ -306,9 +306,15 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * 
 	 * @return number of beans in flight
 	 */
-	public int getInFlightBeanCount() {
+	public int getInFlightBeanCount(int slotCount) {
 		// TODO: Implement
-		return 0;
+		int inFlightBeanCount = 0;
+		for (int l = 0; l < slotCount; l++) {
+			if (getInFlightBeanXPos(l) != -1) {
+				inFlightBeanCount = inFlightBeanCount +1;
+			}
+		}
+		return inFlightBeanCount;
 	}
 
 	/**
@@ -316,8 +322,13 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * 
 	 * @return number of beans in slots
 	 */
-	public int getInSlotBeanCount() {
+	public int getInSlotBeanCount(int slotCount) {
 		// TODO: Implement
-		return 0;
+		int inSlotBeanCount = 0;
+		for (int s = 0; s < slotCount; s++) {
+			inSlotBeanCount = inSlotBeanCount + getSlotBeanCount(s);
+		}
+
+		return inSlotBeanCount;
 	}
 }
