@@ -169,7 +169,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public void reset(Bean[] beans) {
 		// DONEISH
 		this.beanCount = beans.length;
-		this.remainingBeans = this.beanCount;
+		this.remainingBeans = this.beanCount - 1;
 		this.currBeanNum = 0;
 
 		if (beanCount > 0) {
@@ -178,6 +178,9 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 				this.beans[b] = (BeanImpl) beans[b];
 			}
 		}
+
+		board[0] = this.beans[currBeanNum];
+		currBeanNum++;
 	}
 
 	/**
