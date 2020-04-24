@@ -217,8 +217,17 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void repeat() {
 		// TODO: Implement
+		this.remainingBeans = 0;
+		this.currBeanNum = 0;
+
 		this.slots = new int[slotCount];
 		this.board = new BeanImpl[slotCount];
+
+		if (beanCount > 0) {
+			this.remainingBeans = this.beanCount - 1;
+			board[0] = this.beans[currBeanNum];
+			currBeanNum++;
+		}
 	}
 
 	/**
