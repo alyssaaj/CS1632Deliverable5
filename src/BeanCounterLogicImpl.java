@@ -223,7 +223,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			}
 		}
 
-		if (getRemainingBeanCount() > 0) {
+		if (getRemainingBeanCount() >= 0) {
 			board[0] = beans[currBeanNum];
 			status = true;
 			currBeanNum++;
