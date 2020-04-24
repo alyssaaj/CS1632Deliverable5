@@ -74,8 +74,7 @@ public class BeanCounterLogicTest {
 	 *             remaining bean count is beanCount - 1
 	 *             in-flight bean count is 1 (the bean initially at the top)
 	 *             in-slot bean count is 0.
-	 *             
-	 If beanCount is 0,
+	 *             If beanCount is 0,
 	 *             remaining bean count is 0
 	 *             in-flight bean count is 0
 	 *             in-slot bean count is 0.
@@ -130,7 +129,7 @@ public class BeanCounterLogicTest {
 		while(logic.advanceStep()){
 			for (int y = 0; y < slotCount; y++){
 				x = logic.getInFlightBeanXPos(y);
-				legal = x >= 0 && x <= y;
+				legal = (x >= 0 && x <= y) || x = -1;
 				Assert.assertTrue(failString, legal);
 			}
 		}
