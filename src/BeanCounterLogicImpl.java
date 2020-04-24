@@ -169,10 +169,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public void reset(Bean[] beans) {
 		// DONEISH
 		this.beanCount = beans.length;
-		this.remainingBeans = this.beanCount - 1;
+		this.remainingBeans = 0;
 		this.currBeanNum = 0;
 
 		if (beanCount > 0) {
+			this.remainingBeans = this.beanCount - 1;
 			this.beans = new BeanImpl[beans.length];
 			for (int b = 0; b < beans.length; b++) {
 				this.beans[b] = (BeanImpl) beans[b];
@@ -223,7 +224,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			}
 		}
 
-		if (getRemainingBeanCount() >= 0) {
+		if (getRemainingBeanCount() > 0) {
 			board[0] = beans[currBeanNum];
 			status = true;
 			currBeanNum++;
