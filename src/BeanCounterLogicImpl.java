@@ -38,6 +38,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	int remainingBeans;
 	int[] slots;
 	BeanImpl[] beans;
+	BeanImpl[] board;
 
 	/**
 	 * Constructor - creates the bean counter logic object that implements the core
@@ -49,6 +50,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		// DONEish
 		this.slotCount = slotCount;
 		this.slots = new int[slotCount];
+		this.board = new BeanImpl[slotCount];
 	}
 
 	/**
@@ -79,8 +81,13 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getInFlightBeanXPos(int yPos) {
 		// TODO: Implement
-
-		return NO_BEAN_IN_YPOS;
+		BeanImpl currBean = board[yPos];
+		if (currBean != null) {
+			return currBean.pos[yPos];
+		} else {
+			return NO_BEAN_IN_YPOS;
+		}
+	
 	}
 
 	/**
@@ -106,6 +113,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			total = total + slots[s];
 		}
 		double average = (double) total / (double) beanCount;
+		//System.out.println("total: "+total+" beanCount: "+beanCount+" average: "+average);
 		return average;
 	}
 
@@ -117,6 +125,26 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void upperHalf() {
 		// TODO: Implement
+		
+		/*int removeBeans;
+		int leftToRemove;
+
+		if (beanCount % 2 == 0) {
+			removeBeans = beanCount / 2;
+		} else {
+			removeBeans = (beanCount - 1) / 2;
+		}
+
+		leftToRemove = removeBeans;
+
+		for (int i = 0; i < slotCount; i++) {
+
+			if (slots[i] < )
+		}*/
+
+
+
+
 	}
 
 	/**
@@ -170,6 +198,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public boolean advanceStep() {
 		// TODO: Implement
+
 		return false;
 	}
 	

@@ -40,6 +40,7 @@ public class BeanImpl implements Bean {
 	double skillLevel;
 	int[] position;
 	//int level;
+	public int[] pos;
 
 	/**
 	 * Constructor - creates a bean in either luck mode or skill mode.
@@ -50,8 +51,9 @@ public class BeanImpl implements Bean {
 	 */
 	BeanImpl(int slotCount, boolean isLuck, Random rand) {
 		// TODO: Implement
-		dirChosen = new int[slotCount];
+		dirChosen = new int[slotCount - 1];
 		position = new int[2];
+		pos = new int[slotCount];
 		position[0] = 0;
 		position[1] = 0;
 		//level = 0;
@@ -65,7 +67,7 @@ public class BeanImpl implements Bean {
  			skillStddev = (double) Math.sqrt(slotCount * 0.5 * (1 - 0.5));
  			skillLevel = (int) Math.round(rand.nextGaussian() * skillStddev + skillAverage);
 
- 			for (int i = 0; i < slotCount; i++) {
+ 			for (int i = 0; i < slotCount - 1; i++) {
 				if (i < skillLevel) {
 					dirChosen[i] = 1;
 				} else {
@@ -73,9 +75,15 @@ public class BeanImpl implements Bean {
 				}
 			}
 		}
+
+		pos[0] = 0;
+		for (int i = 1; i < slotCount; i++) {
+			pos[i] = pos[i - 1] + dirChosen[i - 1];
+		}
 	}
 
-	/*public void move(){
+
+	/*public void move(int level) {
 		int dir = dirChosen[level];
 		position[1] = position[1]++;
 
