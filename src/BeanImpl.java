@@ -34,6 +34,10 @@ import java.util.Random;
 
 public class BeanImpl implements Bean {
 	// TODO: Add member methods and variables as needed
+	/*int[] dirChosen;
+	double skillAverage, skillStddev, skillLevel;
+	int[] position;
+	int level;*/
 
 	/**
 	 * Constructor - creates a bean in either luck mode or skill mode.
@@ -44,5 +48,45 @@ public class BeanImpl implements Bean {
 	 */
 	BeanImpl(int slotCount, boolean isLuck, Random rand) {
 		// TODO: Implement
+		/*dirChosen = new int[slotCount];
+		position = new int[2];
+		position[0] = 0;
+		position[1] = 0;
+		level = 0;
+
+		if (isLuck){
+			for (int i = 0; i < slotCount; i++){
+				dirChosen[i] = rand.nextInt(2);
+			}
+
+		}
+		else{
+			skillAverage = (double) slotCount * 0.5;
+ 			skillStddev = (double) Math.sqrt(slotCount * 0.5 * (1 - 0.5));
+ 			skillLevel = (int) Math.round(rand.nextGaussian() * skillStddev + skillAverage);
+
+ 			for (int i = 0; i < slotCount; i++){
+				if (i < skillLevel){
+					dirChosen[i] = 1;
+				}
+				else{
+					dirChosen[i] = 0;
+				}
+			}
+		}*/
 	}
+
+	/*public void move(){
+		int dir = dirChosen[level];
+		position[1] = position[1]++;
+
+		switch (dir){
+			case 0:
+				position[0]=
+				break;
+			case 1:
+				break;
+		}
+		
+	}*/
 }

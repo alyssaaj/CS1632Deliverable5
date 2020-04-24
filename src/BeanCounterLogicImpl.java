@@ -33,7 +33,9 @@ import java.util.Random;
 
 public class BeanCounterLogicImpl implements BeanCounterLogic {
 	// TODO: Add member methods and variables as needed
-
+	/*int sCount, bCount;
+	int[] slots;
+	BeanImpl[] b;*/
 	/**
 	 * Constructor - creates the bean counter logic object that implements the core
 	 * logic with the provided number of slots.
@@ -42,6 +44,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	BeanCounterLogicImpl(int slotCount) {
 		// TODO: Implement
+		/*this.sCount = slotCount;
+		this.slots = new int[sCount];*/
 	}
 
 	/**
@@ -51,6 +55,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getSlotCount() {
 		// TODO: Implement
+		/*return this.sCount;*/
 		return 1;
 	}
 	
@@ -129,6 +134,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void reset(Bean[] beans) {
 		// TODO: Implement
+		/*this.bCount = beans.length;
+		this.b = (BeanImpl[]) beans;*/
 	}
 
 	/**
@@ -293,4 +300,23 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		System.out.println("Slot bean counts:");
 		System.out.println(logic.getSlotString());
 	}
-}
+
+	/**
+	 * Returns the number of beans in flight.
+	 * 
+	 * @return number of beans in flight
+	 */
+	public int getInFlightBeanCount() {
+		// TODO: Implement
+		return 0;
+	}
+
+	/**
+	 * Returns the number of beans in all the slots.
+	 * 
+	 * @return number of beans in slots
+	 */
+	public int getInSlotBeanCount() {
+		// TODO: Implement
+		return 0;
+	}

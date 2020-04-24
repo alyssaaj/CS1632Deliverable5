@@ -38,6 +38,15 @@ public class BeanCounterLogicTest {
 		 * https://github.com/javapathfinder/jpf-core/wiki/Verify-API-of-JPF
 		 */
 		
+		/*
+		slotCount = Verify.getInt(1, 5);
+		beanCount = Verify.getInt(0, 3);
+		isLuck = Verify.getBoolean();
+		*/
+
+		slotCount = 1;
+		beanCount = 0;
+		isLuck = false;
 				
 		// Create the internal logic
 		logic = BeanCounterLogic.createInstance(slotCount);
@@ -64,7 +73,8 @@ public class BeanCounterLogicTest {
 	 *             remaining bean count is beanCount - 1
 	 *             in-flight bean count is 1 (the bean initially at the top)
 	 *             in-slot bean count is 0.
-	 *             If beanCount is 0,
+	 *             
+	 If beanCount is 0,
 	 *             remaining bean count is 0
 	 *             in-flight bean count is 0
 	 *             in-slot bean count is 0.
@@ -86,7 +96,19 @@ public class BeanCounterLogicTest {
 		 * 
 		 * PLEASE REMOVE when you are done implementing.
 		 */
-		System.out.println(failString);
+		//System.out.println(failString);
+		logic.reset(beans);
+		if (beanCount > 0){
+			Assert.assertEquals(failString, beanCount-1, logic.getRemainingBeanCount());
+			Assert.assertEquals(failString, 1, ((BeanCounterLogicImpl)logic).getInFlightBeanCount());
+		}
+		else{
+			Assert.assertEquals(failString, 0, logic.getRemainingBeanCount());
+			Assert.assertEquals(failString, 0, ((BeanCounterLogicImpl)logic).getInFlightBeanCount());
+		}
+
+		Assert.assertEquals(failString, 0, ((BeanCounterLogicImpl)logic).getInSlotBeanCount());
+
 	}
 
 	/**
@@ -100,6 +122,17 @@ public class BeanCounterLogicTest {
 	@Test
 	public void testAdvanceStepCoordinates() {
 		// TODO: Implement
+		int x;
+		boolean legal;
+
+		logic.reset(beans);
+		while(logic.advanceStep()){
+			for (int y = 0; y < slotCount; y++){
+				x = logic.getInFlightBeanXPos(y);
+				legal = x >= 0 && x <= y;
+				Assert.assertTrue(failString, legal);
+			}
+		}
 	}
 
 	/**
@@ -113,6 +146,13 @@ public class BeanCounterLogicTest {
 	@Test
 	public void testAdvanceStepBeanCount() {
 		// TODO: Implement
+		int total;
+		
+		logic.reset(beans);
+		while(logic.advanceStep()){
+			total = logic.getRemainingBeanCount() + ((BeanCounterLogicImpl)logic).getInFlightBeanCount() + ((BeanCounterLogicImpl)logic).getInSlotBeanCount()
+			Assert.assertEquals(failString, beanCount, total);
+		}
 	}
 
 	/**
@@ -128,6 +168,11 @@ public class BeanCounterLogicTest {
 	@Test
 	public void testAdvanceStepPostCondition() {
 		// TODO: Implement
+		logic.reset(beans);
+		while(logic.advanceStep()){}
+		Assert.assertEquals(failString, 0, logic.getRemainingBeanCount());
+		Assert.assertEquals(failString, 0, ((BeanCounterLogicImpl)logic).getInFlightBeanCount());
+		Assert.assertEquals(failString, beanCount, ((BeanCounterLogicImpl)logic).getInSlotBeanCount());
 	}
 	
 	/**
@@ -144,6 +189,11 @@ public class BeanCounterLogicTest {
 	@Test
 	public void testLowerHalf() {
 		// TODO: Implement
+		logic.reset(beans);
+		while(logic.advanceStep()){}
+		logic.lowerHalf();
+
+
 	}
 	
 	/**
@@ -160,6 +210,10 @@ public class BeanCounterLogicTest {
 	@Test
 	public void testUpperHalf() {
 		// TODO: Implement
+		logic.reset(Beans);
+		while(logic.advanceStep()){}
+		logic.upperHalf();
+
 	}
 	
 	/**
@@ -175,5 +229,10 @@ public class BeanCounterLogicTest {
 	@Test
 	public void testRepeat() {
 		// TODO: Implement
+		logic.reset(beans);
+		while(logic.advanceStep()){}
+		logic.repeat();
+		while(logic.advanceStep()){}
+
 	}
 }
