@@ -126,7 +126,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	public void upperHalf() {
 		// TODO: Implement
 		
-		/*int removeBeans;
+		int removeBeans;
 
 		if (beanCount % 2 == 0) {
 			removeBeans = beanCount / 2;
@@ -137,9 +137,14 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		for (int i = 0; i < slotCount; i++) {
 
 			if (slots[i] < removeBeans) {
-				removeBeans = removeBeans = slots[i];
+				removeBeans = removeBeans - slots[i];
+				slots[i] = 0;
+			} else {
+				slots[i] = slots[i] - removeBeans;
+				removeBeans = 0;
+				break;
 			}
-		}*/
+		}
 
 	}
 
@@ -192,6 +197,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void repeat() {
 		// TODO: Implement
+		this.slots = new int[slotCount];
+		this.board = new BeanImpl[slotCount];
 	}
 
 	/**
