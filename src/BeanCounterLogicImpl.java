@@ -33,10 +33,11 @@ import java.util.Random;
 
 public class BeanCounterLogicImpl implements BeanCounterLogic {
 	// TODO: Add member methods and variables as needed
-	/*int slotCount;
+	int slotCount;
 	int beanCount;
-	//int[] slots;
-	BeanImpl[] beans;*/
+	int remainingBeans;
+	int[] slots;
+	BeanImpl[] beans;
 
 	/**
 	 * Constructor - creates the bean counter logic object that implements the core
@@ -45,9 +46,9 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @param slotCount the number of slots in the machine
 	 */
 	BeanCounterLogicImpl(int slotCount) {
-		// TODO: Implement
-		//this.slotCount = slotCount;
-		//this.slots = new int[sCount];*
+		// DONEish
+		this.slotCount = slotCount;
+		this.slots = new int[slotCount];
 	}
 
 	/**
@@ -56,9 +57,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of slots
 	 */
 	public int getSlotCount() {
-		// TODO: Implement
-		/*return this.sCount;*/
-		return 1;
+		// DONE
+		return this.slotCount;
 	}
 	
 	/**
@@ -67,8 +67,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of beans remaining
 	 */
 	public int getRemainingBeanCount() {
-		// TODO: Implement
-		return 0;
+		// DONE
+		return remainingBeans;
 	}
 
 	/**
@@ -90,8 +90,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of beans in slot
 	 */
 	public int getSlotBeanCount(int i) {
-		// TODO: Implement
-		return 0;
+		// DONE
+		return slots[i];
 	}
 
 	/**
@@ -100,8 +100,13 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return Average slot number of all the beans in slots.
 	 */
 	public double getAverageSlotBeanCount() {
-		// TODO: Implement
-		return 0;
+		// DONE
+		int total = 0;
+		for (int s = 0; s < slotCount; s++) {
+			total = total + slots[s];
+		}
+		double average = (double) total / (double) beanCount;
+		return average;
 	}
 
 	/**
@@ -136,14 +141,14 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @param beans array of beans to add to the machine
 	 */
 	public void reset(Bean[] beans) {
-		// TODO: Implement
-		/*this.bCount = beans.length;
-		this.b = (BeanImpl[]) beans;*/
+		// DONEISH
+		this.beanCount = beans.length;
+		this.remainingBeans = this.beanCount;
 
-		/*his.beans = new BeanImpl[beans.length];
-		for (int b = 0; b < beans.length; b++){
-			this.beans
-		}*/
+		this.beans = new BeanImpl[beans.length];
+		for (int b = 0; b < beans.length; b++) {
+			this.beans[b] = (BeanImpl) beans[b];
+		}
 	}
 
 	/**
