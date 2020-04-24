@@ -156,6 +156,26 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void lowerHalf() {
 		// TODO: Implement
+
+		int removeBeans;
+
+		if (beanCount % 2 == 0) {
+			removeBeans = beanCount / 2;
+		} else {
+			removeBeans = (beanCount - 1) / 2;
+		}
+
+		for (int i = slotCount - 1; i >= 0; i--) {
+
+			if (slots[i] < removeBeans) {
+				removeBeans = removeBeans - slots[i];
+				slots[i] = 0;
+			} else {
+				slots[i] = slots[i] - removeBeans;
+				removeBeans = 0;
+				break;
+			}
+		}
 	}
 
 	/**
