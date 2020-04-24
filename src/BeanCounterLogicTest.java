@@ -129,7 +129,7 @@ public class BeanCounterLogicTest {
 		while(logic.advanceStep()){
 			for (int y = 0; y < slotCount; y++){
 				x = logic.getInFlightBeanXPos(y);
-				legal = (x >= 0 && x <= y) || x = -1;
+				legal = (x >= 0 && x <= y) || x == -1;
 				Assert.assertTrue(failString, legal);
 			}
 		}
