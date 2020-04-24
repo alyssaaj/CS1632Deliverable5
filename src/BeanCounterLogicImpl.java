@@ -33,9 +33,10 @@ import java.util.Random;
 
 public class BeanCounterLogicImpl implements BeanCounterLogic {
 	// TODO: Add member methods and variables as needed
-	int slotCount;
-	int beanCount;
-	int remainingBeans;
+	int slotCount;			// total slots
+	int beanCount;			// total beans
+	int remainingBeans;		// beans that haven't drop yet
+	int currBeanNum;		// current place in bean array
 	int[] slots;
 	BeanImpl[] beans;
 	BeanImpl[] board;
@@ -142,9 +143,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			if (slots[i] < )
 		}*/
 
-
-
-
 	}
 
 	/**
@@ -172,10 +170,13 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		// DONEISH
 		this.beanCount = beans.length;
 		this.remainingBeans = this.beanCount;
+		this.currBeanNum = 0;
 
-		this.beans = new BeanImpl[beans.length];
-		for (int b = 0; b < beans.length; b++) {
-			this.beans[b] = (BeanImpl) beans[b];
+		if (beanCount > 0) {
+			this.beans = new BeanImpl[beans.length];
+			for (int b = 0; b < beans.length; b++) {
+				this.beans[b] = (BeanImpl) beans[b];
+			}
 		}
 	}
 
@@ -198,8 +199,36 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public boolean advanceStep() {
 		// TODO: Implement
+		BeanImpl finalBean;
+		BeanImpl currBean;
+		Boolean status = false;
 
-		return false;
+		if (board[slotCount - 1] != null) {
+			finalBean = board[slotCount - 1];
+			int s = finalBean.pos[slotCount - 1];
+			slots[s]++;
+			board[slotCount - 1] = null;
+			status = true;
+		}
+
+		for (int i = slotCount - 2; i >= 0 ;i--) {
+			currBean = board[i];
+			if (currBean != null) {
+				board[i + 1] = currBean;
+				board[i] = null;
+				status = true;
+			}
+		}
+
+		if (getRemainingBeanCount() > 0) {
+			board[0] = beans[currBeanNum];
+			status = true;
+		}
+
+		currBeanNum++;
+		remainingBeans--;
+
+		return status;
 	}
 	
 	/**
