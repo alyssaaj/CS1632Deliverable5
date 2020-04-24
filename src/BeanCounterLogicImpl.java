@@ -177,10 +177,10 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			for (int b = 0; b < beans.length; b++) {
 				this.beans[b] = (BeanImpl) beans[b];
 			}
+			board[0] = this.beans[currBeanNum];
+			currBeanNum++;
 		}
 
-		board[0] = this.beans[currBeanNum];
-		currBeanNum++;
 	}
 
 	/**
