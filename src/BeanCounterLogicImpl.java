@@ -48,7 +48,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @param slotCount the number of slots in the machine
 	 */
 	BeanCounterLogicImpl(int slotCount) {
-		// DONEish
 		this.slotCount = slotCount;
 		this.slots = new int[slotCount];
 		this.board = new BeanImpl[slotCount];
@@ -60,7 +59,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of slots
 	 */
 	public int getSlotCount() {
-		// DONE
 		return this.slotCount;
 	}
 	
@@ -70,7 +68,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of beans remaining
 	 */
 	public int getRemainingBeanCount() {
-		// DONE
 		return remainingBeans;
 	}
 
@@ -81,7 +78,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return the x-coordinate of the in-flight bean; if no bean in y-coordinate, return NO_BEAN_IN_YPOS
 	 */
 	public int getInFlightBeanXPos(int yPos) {
-		// TODO: Implement
 		BeanImpl currBean = board[yPos];
 		if (currBean != null) {
 			return currBean.pos[yPos];
@@ -98,7 +94,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of beans in slot
 	 */
 	public int getSlotBeanCount(int i) {
-		// DONE
 		return slots[i];
 	}
 
@@ -108,12 +103,13 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return Average slot number of all the beans in slots.
 	 */
 	public double getAverageSlotBeanCount() {
-		// DONE
 		int total = 0;
 		for (int s = 0; s < slotCount; s++) {
 			total = total + slots[s] * s;
 		}
-		double average = (double) total / (double) beanCount;
+		int currBeanCount = getInSlotBeanCount(slotCount);
+
+		double average = (double) total / (double) currBeanCount;
 		return average;
 	}
 
@@ -124,7 +120,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * will be remaining.
 	 */
 	public void upperHalf() {
-		// TODO: Implement
 		
 		int removeBeans;
 
@@ -155,7 +150,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * will be remaining.
 	 */
 	public void lowerHalf() {
-		// TODO: Implement
 
 		int removeBeans;
 
@@ -190,7 +184,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @param beans array of beans to add to the machine
 	 */
 	public void reset(Bean[] beans) {
-		// DONEISH
 		this.beanCount = beans.length;
 		this.remainingBeans = 0;
 		this.currBeanNum = 0;
@@ -216,7 +209,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * beginning, the machine starts with one bean at the top.
 	 */
 	public void repeat() {
-		// TODO: Implement
 		this.remainingBeans = 0;
 		this.currBeanNum = 0;
 
@@ -239,7 +231,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 *         means the machine is finished.
 	 */
 	public boolean advanceStep() {
-		// TODO: Implement
 		BeanImpl finalBean;
 		BeanImpl currBean;
 		Boolean status = false;
