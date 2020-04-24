@@ -111,10 +111,9 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		// DONE
 		int total = 0;
 		for (int s = 0; s < slotCount; s++) {
-			total = total + slots[s];
+			total = total + slots[s] * s;
 		}
 		double average = (double) total / (double) beanCount;
-		//System.out.println("total: "+total+" beanCount: "+beanCount+" average: "+average);
 		return average;
 	}
 
@@ -128,7 +127,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		// TODO: Implement
 		
 		/*int removeBeans;
-		int leftToRemove;
 
 		if (beanCount % 2 == 0) {
 			removeBeans = beanCount / 2;
@@ -136,11 +134,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 			removeBeans = (beanCount - 1) / 2;
 		}
 
-		leftToRemove = removeBeans;
-
 		for (int i = 0; i < slotCount; i++) {
 
-			if (slots[i] < )
+			if (slots[i] < removeBeans) {
+				removeBeans = removeBeans = slots[i];
+			}
 		}*/
 
 	}
@@ -171,6 +169,9 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		this.beanCount = beans.length;
 		this.remainingBeans = 0;
 		this.currBeanNum = 0;
+
+		this.slots = new int[slotCount];
+		this.board = new BeanImpl[slotCount];
 
 		if (beanCount > 0) {
 			this.remainingBeans = this.beanCount - 1;
