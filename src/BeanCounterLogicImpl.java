@@ -304,6 +304,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	/**
 	 * Returns the number of beans in flight.
 	 * 
+	 * @param slotCount the number of slots in the machine
 	 * @return number of beans in flight
 	 */
 	public int getInFlightBeanCount(int slotCount) {
@@ -311,7 +312,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		int inFlightBeanCount = 0;
 		for (int l = 0; l < slotCount; l++) {
 			if (getInFlightBeanXPos(l) != -1) {
-				inFlightBeanCount = inFlightBeanCount +1;
+				inFlightBeanCount = inFlightBeanCount + 1;
 			}
 		}
 		return inFlightBeanCount;
@@ -319,7 +320,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 	/**
 	 * Returns the number of beans in all the slots.
-	 * 
+	 * @param slotCount the number of slots in the machine
 	 * @return number of beans in slots
 	 */
 	public int getInSlotBeanCount(int slotCount) {

@@ -99,15 +99,18 @@ public class BeanCounterLogicTest {
 		 */
 		//System.out.println(failString);
 		logic.reset(beans);
+
+		int sC = slotCount;
+
 		if (beanCount > 0) {
 			Assert.assertEquals(failString, beanCount - 1, logic.getRemainingBeanCount());
-			Assert.assertEquals(failString, 1, ((BeanCounterLogicImpl)logic).getInFlightBeanCount(slotCount));
+			Assert.assertEquals(failString, 1, ((BeanCounterLogicImpl)logic).getInFlightBeanCount(sC));
 		} else {
 			Assert.assertEquals(failString, 0, logic.getRemainingBeanCount());
-			Assert.assertEquals(failString, 0, ((BeanCounterLogicImpl)logic).getInFlightBeanCount(slotCount));
+			Assert.assertEquals(failString, 0, ((BeanCounterLogicImpl)logic).getInFlightBeanCount(sC));
 		}
 
-		Assert.assertEquals(failString, 0, ((BeanCounterLogicImpl)logic).getInSlotBeanCount(slotCount));
+		Assert.assertEquals(failString, 0, ((BeanCounterLogicImpl)logic).getInSlotBeanCount(sC));
 
 	}
 
@@ -192,6 +195,7 @@ public class BeanCounterLogicTest {
 	public void testLowerHalf() {
 		// TODO: Implement
 		logic.reset(beans);
+
 		while (logic.advanceStep()) {}
 
 		int[] lowerSlots = new int[slotCount / 2];
@@ -208,7 +212,8 @@ public class BeanCounterLogicTest {
 			remainingBeans = (beanCount + 1) / 2;
 		}
 		
-		Assert.assertEquals(failString, remainingBeans, ((BeanCounterLogicImpl)logic).getInSlotBeanCount(slotCount));
+		int sC = slotCount;
+		Assert.assertEquals(failString, remainingBeans, ((BeanCounterLogicImpl)logic).getInSlotBeanCount(sC));
 		
 		for (int i = 0; i < slotCount; i++) {
 			if (i < slotCount / 2) {
@@ -236,6 +241,7 @@ public class BeanCounterLogicTest {
 	public void testUpperHalf() {
 		// TODO: Implement
 		logic.reset(beans);
+
 		while (logic.advanceStep()) {}
 
 		int[] upperSlots = new int[slotCount / 2];
@@ -254,7 +260,8 @@ public class BeanCounterLogicTest {
 			remainingBeans = (beanCount + 1) / 2;
 		}
 
-		Assert.assertEquals(failString, remainingBeans, ((BeanCounterLogicImpl)logic).getInSlotBeanCount(slotCount));
+		int sC = slotCount;
+		Assert.assertEquals(failString, remainingBeans, ((BeanCounterLogicImpl)logic).getInSlotBeanCount(sC));
 		
 		j = 0;
 		for (int i = 0; i < slotCount; i++) {
