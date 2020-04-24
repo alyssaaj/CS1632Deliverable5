@@ -51,34 +51,35 @@ public class BeanImpl implements Bean {
 	 */
 	BeanImpl(int slotCount, boolean isLuck, Random rand) {
 		// TODO: Implement
-		dirChosen = new int[slotCount - 1];
-		position = new int[2];
-		pos = new int[slotCount];
-		position[0] = 0;
-		position[1] = 0;
-		//level = 0;
+		if (slotCount != 0) {
+			dirChosen = new int[slotCount - 1];
+			position = new int[2];
+			pos = new int[slotCount];
+			position[0] = 0;
+			position[1] = 0;
+			//level = 0;
+			if (isLuck) {
+				for (int i = 0; i < slotCount; i++) {
+					dirChosen[i] = rand.nextInt(2);
+				}
+			} else {
+				skillAverage = (double) slotCount * 0.5;
+	 			skillStddev = (double) Math.sqrt(slotCount * 0.5 * (1 - 0.5));
+	 			skillLevel = (int) Math.round(rand.nextGaussian() * skillStddev + skillAverage);
 
-		if (isLuck) {
-			for (int i = 0; i < slotCount; i++) {
-				dirChosen[i] = rand.nextInt(2);
-			}
-		} else {
-			skillAverage = (double) slotCount * 0.5;
- 			skillStddev = (double) Math.sqrt(slotCount * 0.5 * (1 - 0.5));
- 			skillLevel = (int) Math.round(rand.nextGaussian() * skillStddev + skillAverage);
-
- 			for (int i = 0; i < slotCount - 1; i++) {
-				if (i < skillLevel) {
-					dirChosen[i] = 1;
-				} else {
-					dirChosen[i] = 0;
+	 			for (int i = 0; i < slotCount - 1; i++) {
+					if (i < skillLevel) {
+						dirChosen[i] = 1;
+					} else {
+						dirChosen[i] = 0;
+					}
 				}
 			}
-		}
 
-		pos[0] = 0;
-		for (int i = 1; i < slotCount; i++) {
-			pos[i] = pos[i - 1] + dirChosen[i - 1];
+			pos[0] = 0;
+			for (int i = 1; i < slotCount; i++) {
+				pos[i] = pos[i - 1] + dirChosen[i - 1];
+			}
 		}
 	}
 
