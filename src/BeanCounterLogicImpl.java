@@ -320,3 +320,4 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		// TODO: Implement
 		return 0;
 	}
+}
