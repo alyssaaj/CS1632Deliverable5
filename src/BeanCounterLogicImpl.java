@@ -33,9 +33,11 @@ import java.util.Random;
 
 public class BeanCounterLogicImpl implements BeanCounterLogic {
 	// TODO: Add member methods and variables as needed
-	/*int sCount, bCount;
-	int[] slots;
-	BeanImpl[] b;*/
+	/*int slotCount;
+	int beanCount;
+	//int[] slots;
+	BeanImpl[] beans;*/
+
 	/**
 	 * Constructor - creates the bean counter logic object that implements the core
 	 * logic with the provided number of slots.
@@ -44,8 +46,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	BeanCounterLogicImpl(int slotCount) {
 		// TODO: Implement
-		/*this.sCount = slotCount;
-		this.slots = new int[sCount];*/
+		//this.slotCount = slotCount;
+		//this.slots = new int[sCount];*
 	}
 
 	/**
@@ -77,6 +79,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getInFlightBeanXPos(int yPos) {
 		// TODO: Implement
+
 		return NO_BEAN_IN_YPOS;
 	}
 
@@ -136,6 +139,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 		// TODO: Implement
 		/*this.bCount = beans.length;
 		this.b = (BeanImpl[]) beans;*/
+
+		/*his.beans = new BeanImpl[beans.length];
+		for (int b = 0; b < beans.length; b++){
+			this.beans
+		}*/
 	}
 
 	/**
@@ -303,7 +311,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 	/**
 	 * Returns the number of beans in flight.
-	 * 
 	 * @param slotCount the number of slots in the machine
 	 * @return number of beans in flight
 	 */
