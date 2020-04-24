@@ -41,14 +41,14 @@ public class BeanCounterLogicTest {
 		 */
 		
 		
-		/*slotCount = Verify.getInt(1, 5);
+		slotCount = Verify.getInt(1, 5);
 		beanCount = Verify.getInt(0, 3);
-		isLuck = Verify.getBoolean();*/
+		isLuck = Verify.getBoolean();
 		
 
-		slotCount = 1;
+		/*slotCount = 1;
 		beanCount = 0;
-		isLuck = false;
+		isLuck = false;*/
 				
 		// Create the internal logic
 		logic = BeanCounterLogic.createInstance(slotCount);
