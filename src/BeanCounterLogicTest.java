@@ -97,7 +97,6 @@ public class BeanCounterLogicTest {
 		 * 
 		 * PLEASE REMOVE when you are done implementing.
 		 */
-		//System.out.println(failString);
 		logic.reset(beans);
 
 		int sC = slotCount;
@@ -124,7 +123,6 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testAdvanceStepCoordinates() {
-		// TODO: Implement
 		int x;
 		boolean legal;
 
@@ -148,7 +146,6 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testAdvanceStepBeanCount() {
-		// TODO: Implement
 		int total;
 
 		logic.reset(beans);
@@ -172,7 +169,6 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testAdvanceStepPostCondition() {
-		// TODO: Implement
 		logic.reset(beans);
 		while (logic.advanceStep()) {}
 		Assert.assertEquals(failString, 0, logic.getRemainingBeanCount());
@@ -193,15 +189,9 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testLowerHalf() {
-		// TODO: Implement
 		logic.reset(beans);
 
-		while (logic.advanceStep()) {}
-
-		/*int[] lowerSlots = new int[slotCount / 2];
-		for (int i = 0; i < slotCount / 2; i++) {
-			lowerSlots[i] = logic.getSlotBeanCount(i);
-		}*/			
+		while (logic.advanceStep()) {}		
 	
 		logic.lowerHalf();
 
@@ -215,14 +205,6 @@ public class BeanCounterLogicTest {
 		int sC = slotCount;
 		Assert.assertEquals(failString, remainingBeans, ((BeanCounterLogicImpl)logic).getInSlotBeanCount(sC));
 		
-		/*for (int i = 0; i < slotCount; i++) {
-			if (i < slotCount / 2) {
-				Assert.assertEquals(failString, lowerSlots[i], logic.getSlotBeanCount(i));
-			} else {
-				Assert.assertEquals(failString, 0, logic.getSlotBeanCount(i));
-			}
-
-		}*/
 
 	}
 	
@@ -239,17 +221,9 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testUpperHalf() {
-		// TODO: Implement
 		logic.reset(beans);
 
 		while (logic.advanceStep()) {}
-
-		/*int[] upperSlots = new int[slotCount / 2];
-		int j = 0;
-		for (int i = slotCount / 2; i < slotCount; i++) {
-			upperSlots[j] = logic.getSlotBeanCount(i);
-			j++;
-		}*/
 
 		logic.upperHalf();
 
@@ -263,16 +237,6 @@ public class BeanCounterLogicTest {
 		int sC = slotCount;
 		Assert.assertEquals(failString, remainingBeans, ((BeanCounterLogicImpl)logic).getInSlotBeanCount(sC));
 		
-		/*j = 0;
-		for (int i = 0; i < slotCount; i++) {
-			if (i < slotCount / 2) {
-				Assert.assertEquals(failString, 0, logic.getSlotBeanCount(i));
-			} else {
-				Assert.assertEquals(failString, upperSlots[j], logic.getSlotBeanCount(i));
-				j++;
-			}
-
-		}*/
 
 	}
 	
@@ -288,7 +252,6 @@ public class BeanCounterLogicTest {
 	 */
 	@Test
 	public void testRepeat() {
-		// TODO: Implement
 		logic.reset(beans);
 		while (logic.advanceStep()) {}
 
@@ -308,6 +271,49 @@ public class BeanCounterLogicTest {
 		}
 
 		
+
+	}
+
+	/**
+	 * Test case for void ().
+	 * Preconditions: None.
+	 * Execution steps: Call logic.reset(beans).
+	 *                  Call logic.advanceStep() in a loop until it returns false (the machine terminates).
+	 *                  Call logic.getBeansInBoard() for each iteration
+	 * Invariants: Verify that there are no empty levels between falling beans 
+	 */
+	@Test
+	public void testNoSpace() {
+		logic.reset(beans);
+		BeanImpl[] board;
+		Boolean noSkips = null;
+
+		while (logic.advanceStep()) {
+			board = ((BeanCounterLogicImpl)logic).getBeansInBoard();
+			
+			int startPt = slotCount - 1;
+			Boolean temp = (board[0] == null);
+			for (int i = 1; i < slotCount; i++) {
+				Boolean curr = (board[i] == null);
+				if (temp ^ curr) {
+					startPt = i;
+					break;
+				}
+			}
+
+			temp = (board[startPt] == null);
+			Boolean lastcurr = false;
+			for (int i = startPt + 1; i < slotCount; i++) {
+				Boolean curr = (board[i] == null);
+				if (curr) {
+					lastcurr = true;
+				}
+				if (lastcurr) {
+					Assert.assertFalse(failString, lastcurr ^ curr);
+				}
+			}
+		}
+
 
 	}
 }

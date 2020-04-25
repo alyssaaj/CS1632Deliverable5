@@ -38,8 +38,7 @@ public class BeanImpl implements Bean {
 	double skillAverage;
 	double skillStddev;
 	double skillLevel;
-	//int[] position;
-	//int level;
+
 	public int[] pos;
 
 	/**
@@ -53,11 +52,8 @@ public class BeanImpl implements Bean {
 		// TODO: Implement
 		if (slotCount != 0) {
 			dirChosen = new int[slotCount - 1];
-			//position = new int[2];
 			pos = new int[slotCount];
-			//position[0] = 0;
-			//position[1] = 0;
-			//level = 0;
+
 			if (isLuck) {
 				for (int i = 0; i < slotCount - 1; i++) {
 					dirChosen[i] = rand.nextInt(2);
@@ -83,18 +79,4 @@ public class BeanImpl implements Bean {
 		}
 	}
 
-
-	/*public void move(int level) {
-		int dir = dirChosen[level];
-		position[1] = position[1]++;
-
-		switch (dir){
-			case 0:
-				position[0]=
-				break;
-			case 1:
-				break;
-		}
-		
-	}*/
 }

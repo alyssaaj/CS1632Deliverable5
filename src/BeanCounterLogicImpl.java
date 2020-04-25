@@ -412,7 +412,6 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of beans in flight
 	 */
 	public int getInFlightBeanCount(int slotCount) {
-		// TODO: Implement
 		int inFlightBeanCount = 0;
 		for (int l = 0; l < slotCount; l++) {
 			if (getInFlightBeanXPos(l) != -1) {
@@ -428,12 +427,19 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * @return number of beans in slots
 	 */
 	public int getInSlotBeanCount(int slotCount) {
-		// TODO: Implement
 		int inSlotBeanCount = 0;
 		for (int s = 0; s < slotCount; s++) {
 			inSlotBeanCount = inSlotBeanCount + getSlotBeanCount(s);
 		}
 
 		return inSlotBeanCount;
+	}
+
+	/**
+	 * Returns the which beans are at each level.
+	 * @return which bean is at each level
+	 */
+	public BeanImpl[] getBeansInBoard() {
+		return board.clone();
 	}
 }
